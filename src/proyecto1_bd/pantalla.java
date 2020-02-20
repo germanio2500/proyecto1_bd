@@ -5,11 +5,21 @@
  */
 package proyecto1_bd;
 
+import com.mysql.jdbc.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import proyecto1_bd.MySQLConnectionFactory;
+import static proyecto1_bd.MySQLConnectionFactory.conectar;
+
 /**
  *
  * @author Gilberto Verdugo
  */
 public class pantalla extends javax.swing.JFrame {
+MySQLConnectionFactory con;
+                                           
 
     /**
      * Creates new form pantalla
@@ -156,11 +166,29 @@ public class pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        // TODO add your handling code here:
+       conectar cc=new conectar();
+    Connection cn=cc.conexion();
+        try{
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO idconexion(id,nombre) VALUES(?,?)");
+            pst.setString(1,jTextField1.getText());
+            pst.setString(2,jTextField3.getText());
+            
+
+        
+        int a=pst.executeUpdate();
+        if(a>0){
+            JOptionPane.showMessageDialog(null,"Registro exitoso");
+             mostrardatos("");
+        }
+        else{
+             JOptionPane.showMessageDialog(null,"Error al agregar");
+        }
+        }catch(Exception e){
+        }        // TO
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

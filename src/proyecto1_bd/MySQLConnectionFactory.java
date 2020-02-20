@@ -18,8 +18,9 @@ public class MySQLConnectionFactory implements ConnectionFactory {
     private final String user;
     private final String password;
 
-    public MySQLConnectionFactory(
-            String host,
+     
+
+    MySQLConnectionFactory(String host,
             String database,
             int port,
             String user, 
@@ -31,6 +32,8 @@ public class MySQLConnectionFactory implements ConnectionFactory {
                     host, port, database);
     }
 
+   
+
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(this.connectionString,
@@ -40,7 +43,7 @@ public class MySQLConnectionFactory implements ConnectionFactory {
     public static Connection conectar() {
 		Connection con = null;
 		
-		String password = "root";
+		String password = "1234";
 		String user = "root";
 		String connectionString = "jdbc:mysql://%s:%d/%s?serverTimezone=UTC" + user
 				+ "&password=" + password;
